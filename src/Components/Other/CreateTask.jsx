@@ -72,7 +72,8 @@ function CreateTask() {
         <p className='text-white/70'>Fill in the details below to create a new task for your team</p>
       </div>
 
-      <form onSubmit={submitHandler} className='flex flex-wrap w-full items-start justify-between gap-8'>
+      <form onSubmit={submitHandler} className='flex flex-col lg:flex-row w-full gap-8'>
+        {/* Left Side - Task Details */}
         <div className='w-full lg:w-1/2 flex flex-col gap-6'>
           <div className='space-y-2'>
             <label className='block text-sm font-semibold text-white/90'>Task Title</label>
@@ -122,39 +123,38 @@ function CreateTask() {
           </div>
         </div>
 
-        <div className='w-full lg:w-1/2'>
-          <div className='flex flex-col items-start h-full space-y-6'>
-            <div className='w-full space-y-2'>
-              <label className='block text-sm font-semibold text-white/90'>Description</label>
-              <textarea
-                value={taskDescription}
-                onChange={(e) => setTaskDescription(e.target.value)}
-                className='w-full h-44 py-4 px-5 rounded-xl outline-none bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 focus:bg-white/15 transition-all duration-300 resize-none'
-                placeholder='Enter detailed task description...'
-                required
-              />
-            </div>
-            
-            <button
-              disabled={isCreating}
-              className='w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:transform-none group overflow-hidden'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-              <span className='relative flex items-center justify-center space-x-2'>
-                {isCreating ? (
-                  <>
-                    <div className='w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
-                    <span>Creating Task...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>✨</span>
-                    <span>Create Task</span>
-                  </>
-                )}
-              </span>
-            </button>
+        {/* Right Side - Description and Button */}
+        <div className='w-full lg:w-1/2 flex flex-col justify-between gap-6'>
+          <div className='space-y-2'>
+            <label className='block text-sm font-semibold text-white/90'>Description</label>
+            <textarea
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
+              className='w-full h-72 py-4 px-5 rounded-xl outline-none bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 focus:bg-white/15 transition-all duration-300 resize-none'
+              placeholder='Enter detailed task description...'
+              required
+            />
           </div>
+          
+          <button
+            disabled={isCreating}
+            className='w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-500 disabled:to-gray-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:transform-none relative overflow-hidden'
+          >
+            <div className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300'></div>
+            <span className='relative flex items-center justify-center space-x-2'>
+              {isCreating ? (
+                <>
+                  <div className='w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
+                  <span>Creating Task...</span>
+                </>
+              ) : (
+                <>
+                  <span>✨</span>
+                  <span>Create Task</span>
+                </>
+              )}
+            </span>
+          </button>
         </div>
       </form>
     </div>
